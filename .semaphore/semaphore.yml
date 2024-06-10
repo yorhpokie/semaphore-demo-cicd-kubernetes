@@ -15,6 +15,7 @@ blocks:
         - name: Build
           commands:
             - checkout
+            - docker login -u yorh -p $DOCKERHUB_ACCESSTOKEN
             - 'docker pull $DOCKERHUB_REGISTRY_URL/semaphore-demo-cicd-kubernetes:latest || true'
             - 'docker build --cache-from $DOCKERHUB_REGISTRY_URL/seamphore-demo-cicd-kubernetes:latest -t $SEMAPHORE_REGISTRY_URL/semaphore-demo-cicd-kubernetes:$SEMAPHORE_WORKFLOW_ID .'
             - 'docker push $DOCKERHUB_REGISTRY_URL/semaphore-demo-cicd-kubernetes:$SEMAPHORE_WORKFLOW_ID'
